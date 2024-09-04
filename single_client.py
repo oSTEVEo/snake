@@ -45,7 +45,7 @@ while running:
         # if play_button_rect.clicked == True:
         #    game_status == 1
         #    screen.fill(BACKGROUND_COLOR)
-    
+
     # Input
     for e in pygame.event.get():
         if e.type == KEYDOWN:
@@ -55,18 +55,18 @@ while running:
             if (e.key==K_s or e.key==K_DOWN): heading = Vector2((0,1))
             if prev_heading == -heading: # to avoid dumb death
                 heading = prev_heading
-        
+
         if e.type == pygame.QUIT:
             running = False
     pg.snakes[snake_id].speed_vector = heading
-    
+
     # Running
     if game_status:
         if last_update + UPADE_DELAY < time.time():
             pg.update()
             prev_heading = heading
             last_update = time.time()
-        
+
         #render all
         screen.fill(BACKGROUND_COLOR)
         screen.blit(MENU_FONT.render("SCORE: "+str(pg.snakes[snake_id].score()).zfill(5), True, WHITE, MAGNETA), (MENU_WIDTH-100, 40))
@@ -79,6 +79,6 @@ while running:
                 ptr += part
                 pygame.draw.rect(screen, WHITE, pygame.rect.Rect((ptr*RECT_SIZE).coords(), [RECT_SIZE, RECT_SIZE]))
         pygame.draw.rect(screen, GREEN, pygame.rect.Rect((pg.fruit_pos*RECT_SIZE).coords(), (RECT_SIZE, RECT_SIZE)))
-        
+
     pygame.display.update()
 pygame.quit()
